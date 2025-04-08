@@ -14,13 +14,15 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
         child: Column(
       children: [
-        const Text('Hello World'),
+        Row(children: [
+          IconButton(onPressed: () => {}, icon: const Icon(Icons.horizontal_rule, color: Colors.black, size: 25),),
+          const Text('Latest News', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 25))
+        ]),
         TextButton(
             onPressed: () => {
-                  Navigator.of(context)
-                      .push(AppRouter.generateRoute(RouteName.detailScreen))
+                  Navigator.of(context).push(AppRouter.generateRoute(RouteName.detailScreen))
                 },
-            child: const Text('naviagte to detail'))
+            child: const Text('navigate to detail'))
       ],
     ));
   }
