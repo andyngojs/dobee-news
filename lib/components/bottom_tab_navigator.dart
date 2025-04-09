@@ -27,7 +27,9 @@ class _BottomTabNavigatorState extends State<BottomTabNavigator> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+      body: Scaffold(
+          backgroundColor: Colors.white,
+          body: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),

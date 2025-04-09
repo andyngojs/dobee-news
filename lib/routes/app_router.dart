@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:dobee_news/components/bottom_tab_navigator.dart';
-import 'package:dobee_news/screens/screen_a.dart';
 import 'package:dobee_news/screens/home_screen.dart';
 import 'package:dobee_news/screens/account_screen.dart';
 import 'package:dobee_news/screens/detail_screen.dart';
@@ -11,7 +10,6 @@ class RouteName {
   static const String homeScreen = 'home';
   static const String accountScreen = 'account';
   static const String detailScreen = 'detail';
-  static const String screenA = 'screenA';
 }
 
 class AppRouter {
@@ -23,8 +21,6 @@ class AppRouter {
         return MaterialPageRoute(builder: (context) => const AccountScreen());
       case RouteName.detailScreen:
         return MaterialPageRoute(builder: (context) => const DetailScreen());
-      case RouteName.screenA:
-        return MaterialPageRoute(builder: (context) => const ScreenA());
       default:
         return MaterialPageRoute(builder: (context) => const BottomTabNavigator());
     }
