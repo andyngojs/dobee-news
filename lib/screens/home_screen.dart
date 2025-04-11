@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:dobee_news/routes/app_router.dart';
 import 'package:dobee_news/services/api_service.dart';
 import 'package:flutter/material.dart';
 
@@ -40,35 +41,55 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return SafeArea(
       child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Row(children: [
-              Text('Latest News',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontSize: 25)),
-            ]),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(12, 8, 8, 8),
+              child: Row(children: [
+                Text('Latest News',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 25)),
+              ]),
+            ),
             Expanded(
-              child: ListView.builder(
+              child: postData.isNotEmpty ? ListView.builder(
                   itemCount: 10,
                   itemBuilder: (BuildContext context, int index) {
-                    return Row(
-                      children: [
-                        Image.network(uriImage, width: 100, height: 100),
-                        Column(children: [
-                          Text(
-                            postData[index]['title'],
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          )
-                        ])
-                      ],
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushNamed(RouteName.detailScreen, arguments: {"data": postData[index]});
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+                        child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.network(uriImage, width: 100, height: 100),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                                child: Column(children: [
+                                  SizedBox(
+                                    width: screenWidth / 1.5,
+                                    child: Text(
+                                      postData[index]['title'],
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  )
+                                ]),
+                              )
+                            ]),
+                      ),
                     );
-                  }),
+                  }): Container(),
             ),
           ]),
     );

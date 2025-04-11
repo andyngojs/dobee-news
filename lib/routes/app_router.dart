@@ -13,6 +13,12 @@ class RouteName {
 }
 
 class AppRouter {
+  static Map<String, WidgetBuilder> routes = {
+    RouteName.homeScreen: (context) => const HomeScreen(),
+    RouteName.detailScreen: (context) => const DetailScreen(),
+    RouteName.accountScreen: (context) => const AccountScreen()
+  };
+
   static Route<dynamic> generateRoute(String setting) {
     switch (setting) {
       case RouteName.homeScreen:
@@ -22,7 +28,18 @@ class AppRouter {
       case RouteName.detailScreen:
         return MaterialPageRoute(builder: (context) => const DetailScreen());
       default:
-        return MaterialPageRoute(builder: (context) => const BottomTabNavigator());
+        return MaterialPageRoute(
+            builder: (context) => const BottomTabNavigator());
     }
+  }
+}
+
+class Navigation {
+  static void push(BuildContext context, String screen) {
+    Navigator.of(context).push(AppRouter.generateRoute(screen));
+  }
+
+  static void pop(BuildContext context) {
+    Navigator.of(context).pop();
   }
 }

@@ -1,3 +1,4 @@
+import 'package:dobee_news/routes/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:dobee_news/components/bottom_tab_navigator.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
         splashColor: Colors.transparent
       ),
       home: const MyHomePage(),
+      routes: AppRouter.routes,
     );
   }
 }
